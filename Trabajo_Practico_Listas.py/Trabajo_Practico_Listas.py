@@ -327,27 +327,25 @@ while True:
 # • Mostrar el día con mayores ventas totales.
 # • Indicar cuál fue el producto más vendido en la semana.
 
+
 matriz = [
-    ["Pera","Manzana","Banana","Pera"],
-    ["Pera","Manzana","Banana","-"],
-    ["Pera","Pera","-","-"],
-    ["Pera","Manzana","-","-"],
-    ["Manzana","Manzana","Banana","-"],
-    ["Manzana","Pera","Banana","Banana"],
-    ["Pera","Pera","Pera","Manzana"]
+    ["Pera", "Pera", "Pera", "Pera", "Pera", "-", "Pera"],       
+    ["Manzana", "Manzana", "-", "Manzana", "Manzana", "Manzana", "Manzana"],  
+    ["Banana", "-", "Banana", "-", "Banana", "Banana", "Banana"],  
+    ["-", "-", "-", "-", "-", "-", "-"]                       
 ]
+
 cant_pera = 0
 cant_manza = 0
 cant_bana = 0
 
-
-for producto in matriz:
-    for a in producto:
-        if a == "Pera":
+for i, fila in enumerate(matriz):
+    for producto in fila:
+        if producto == "Pera":
             cant_pera += 1
-        elif a == "Manzana":
+        elif producto == "Manzana":
             cant_manza += 1
-        elif a == "Banana":
+        elif producto == "Banana":
             cant_bana += 1
 
 
@@ -356,14 +354,16 @@ print(f"\nSe vendieron {cant_pera} de Pera.")
 print(f"\nSe vendieron {cant_manza} de Manzanas.")
 print(f"\nSe vendieron {cant_bana} de Bananas.")
 
-# A continuacion calculas y luego mostramos el dia con mayor venta:
+
+# A continuacion calculamos y luego mostramos el dia con mayor venta:
 total_por_dia = []
 
 # Calcular total vendido por cada día
-for fila in matriz:
+
+for col in range(7):   
     total = 0
-    for producto in fila:
-        if producto != "-":
+    for fila in range(4):  
+        if matriz[fila][col] != "-":
             total += 1
     total_por_dia.append(total)
 
@@ -373,11 +373,11 @@ dias_max_venta = []
 
 for i in range(len(total_por_dia)):
     if total_por_dia[i] == maxima_venta:
-        dias_max_venta.append(i + 1)
+        dias_max_venta.append(i + 1)  
 
 print(f"\nLos dias con mayor venta son: {dias_max_venta} con {maxima_venta} productos vendidos")
 
-# --- Producto más vendido en la semana ---
+#Producto más vendido en la semana 
 max_ventas_producto = max(cant_pera, cant_manza, cant_bana)
 productos_mas_vendidos = []
 
@@ -388,4 +388,4 @@ if cant_manza == max_ventas_producto:
 if cant_bana == max_ventas_producto:
     productos_mas_vendidos.append("Banana")
 
-print(f"\nEl/Los producto/s más vendido/s en la semana: {productos_mas_vendidos} con {max_ventas_producto} unidades")
+print(f"\nEl/Los producto/s más vendido/s en la semana: {', '.join(productos_mas_vendidos)}  con {max_ventas_producto} unidades")
