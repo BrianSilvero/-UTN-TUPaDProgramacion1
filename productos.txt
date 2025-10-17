@@ -1,0 +1,4 @@
+Pera,20,2
+Manzana,15,5
+Banana,10,8
+dsa,2,2
